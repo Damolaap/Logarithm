@@ -12,7 +12,7 @@ def get_local_ip():
         return "127.0.0.1"
 
 class FileHandler(BaseHTTPRequestHandler):
-    file_path = r"C:\Users\damol\Desktop\log\svchost.dist\svchost.exe"  # Replace with your file path
+    file_path = r""  # Replace with your file path
     file_name = os.path.basename(file_path)
 
     def do_GET(self):
